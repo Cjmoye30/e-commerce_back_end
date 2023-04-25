@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 });
 
 // get one product - DONE
+// find a single product by its `id`
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      // find a single product by its `id`
       // be sure to include its associated Category and Tag data
       include: [{ model: Category }, { model: Tag, through: ProductTag }],
     });
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
 
 });
 
-// update product
+// update product - PROVIDED
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
